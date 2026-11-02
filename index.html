@@ -66,6 +66,9 @@
                 <button onclick="switchTab('calculator')" id="tab-calculator" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
                     <i class="fa-solid fa-scale-balanced ml-1.5"></i> מחשבון אישי
                 </button>
+                <button onclick="switchTab('shopping')" id="tab-shopping" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-basket-shopping ml-1.5"></i> רשימת קניות
+                </button>
             </nav>
         </div>
     </header>
@@ -329,6 +332,32 @@
             </div>
         </section>
 
+        <!-- 6. SHOPPING LIST TAB -->
+        <section id="section-shopping" class="space-y-6 tab-content hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">רשימת קניות מרוכזת למדריך</h2>
+                        <p class="text-sm text-slate-500">כל המצרכים המומלצים מתוך מדריך התזונה, מוכנים להעתקה או לשמירה ב-Google Keep.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="copyShoppingList()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow">
+                            <i class="fa-solid fa-copy ml-1.5"></i> העתק רשימה
+                        </button>
+                        <button onclick="openInKeep()" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow">
+                            <i class="fa-solid fa-note-sticky ml-1.5"></i> שמור ב-Google Keep
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                    <div id="shopping-list-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -561,7 +590,110 @@
             renderFoodsGrid(foodsDatabase);
             renderPlannerIngredients();
             calculateMetrics();
+            renderShoppingList();
         };
+
+        // Render Consolidated Shopping List
+        function renderShoppingList() {
+            const container = document.getElementById('shopping-list-container');
+            container.innerHTML = '';
+
+            const categories = {};
+            foodsDatabase.filter(f => f.status === 'recommended').forEach(food => {
+                if (!categories[food.category]) {
+                    categories[food.category] = [];
+                }
+                categories[food.category].push(food.name);
+            });
+
+            for (const [category, items] of Object.entries(categories)) {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3';
+                
+                let itemsHtml = items.map(item => `
+                    <label class="flex items-center gap-2.5 text-xs text-slate-700 cursor-pointer hover:text-indigo-900">
+                        <input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4">
+                        <span>${item}</span>
+                    </label>
+                `).join('');
+
+                card.innerHTML = `
+                    <h3 class="font-bold text-sm text-indigo-900 border-b border-slate-100 pb-2 flex items-center justify-between">
+                        <span>${category}</span>
+                        <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full">${items.length}</span>
+                    </h3>
+                    <div class="space-y-2">
+                        ${itemsHtml}
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        // Copy Shopping List to Clipboard
+        function copyShoppingList() {
+            let text = "רשימת קניות - תזונה ללא סוכר ופחמימות פשוטות:\n\n";
+            foodsDatabase.filter(f => f.status === 'recommended').forEach(f => {
+                text += `• [ ] ${f.name} (${f.category})\n`;
+            });
+
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                alertBox("רשימת הקניות הועתקה בהצלחה ללוח!");
+            } catch (err) {
+                alertBox("שגיאה בהעתקת הרשימה.");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        // Open in Google Keep
+        function openInKeep() {
+            let text = "רשימת קניות - תזונה ללא סוכר ופחמימות פשוטות:\n\n";
+            foodsDatabase.filter(f => f.status === 'recommended').forEach(f => {
+                text += `• ${f.name} (${f.category})\n`;
+            });
+
+            // Fallback copy mechanism using a temporary textarea
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';  // Avoid scrolling to bottom
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    alertBox("הרשימה הועתקה ללוח בהצלחה! פותח את Google Keep...");
+                } else {
+                    alertBox("מעביר ל-Google Keep...");
+                }
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            
+            document.body.removeChild(textarea);
+
+            // Open Google Keep in a new tab immediately
+            setTimeout(() => {
+                window.open('https://keep.google.com/', '_blank');
+            }, 600);
+        }
+
+        // Custom notification box (no alert())
+        function alertBox(msg) {
+            const div = document.createElement('div');
+            div.className = 'fixed bottom-5 left-5 bg-indigo-900 text-white px-5 py-3 rounded-xl shadow-xl z-50 text-sm font-semibold transition-all';
+            div.innerText = msg;
+            document.body.appendChild(div);
+            setTimeout(() => {
+                div.remove();
+            }, 3000);
+        }
     </script>
 </body>
 </html>
