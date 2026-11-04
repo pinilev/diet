@@ -69,6 +69,9 @@
                 <button onclick="switchTab('shopping')" id="tab-shopping" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
                     <i class="fa-solid fa-basket-shopping ml-1.5"></i> רשימת קניות
                 </button>
+                <button onclick="switchTab('hamim')" id="tab-hamim" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-pot-food ml-1.5"></i> מתכון חמין
+                </button>
             </nav>
         </div>
     </header>
@@ -358,6 +361,42 @@
             </div>
         </section>
 
+        <!-- 7. HAMIM RECIPE TAB -->
+        <section id="section-hamim" class="space-y-6 tab-content hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-indigo-600"></i> מתכון לחמין בריא ומותאם לדיאטה
+                    </h2>
+                    <p class="text-sm text-slate-500">חמין עשיר בחלבונים איכותיים, שומנים בריאים וירקות שורש — ללא תפוחי אדמה עמילניים וללא סוכר.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מצרכים מומלצים:</h3>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li>• <strong>בשר בקר רזים</strong> (נתחי אסאדו רזה / כתף / שייטל חתוכים לקוביות)</li>
+                            <li>• <strong>עצמות רשות / מח</strong> (לתוספת עומק טעם וג'לטין טבעי)</li>
+                            <li>• <strong>קטניות במידה:</strong> כוס שעועית שחורה או לבנה מושרית מראש (או חומוס)</li>
+                            <li>• <strong>דגנים מורכבים:</strong> חצי כוס חיטה מלאה או גריסים</li>
+                            <li>• <strong>ירקות שורש ובצל:</strong> בצלים שלמים, שום שלם, גזרים בודדים (או בטטה קטנה פרוסה במידה מתונה)</li>
+                            <li>• <strong>שומנים ותבלינים:</strong> שמן זית כתית מעולה, פפריקה מתוקה/חריפה, כמון, פלפל שחור ומלח</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-100 space-y-3">
+                        <h3 class="font-bold text-indigo-900 text-base border-b border-indigo-100 pb-2">אופן ההכנה:</h3>
+                        <ol class="space-y-2 text-sm text-slate-700 list-decimal list-inside leading-relaxed">
+                            <li><strong>טיגון ראשוני:</strong> בסיר חמין רחב, מטגנים היטב את הבצלים בשמן זית עד להזהבה. מוסיפים את נתחי הבשר וצורבים מכל הצדדים.</li>
+                            <li><strong>שילוב קטניות ותבלינים:</strong> מוסיפים את השעועית המושרה, הדגנים המלאים (גריסים/חיטה), ראשי השום השלמים והתבלינים.</li>
+                            <li><strong>נוזלים:</strong> מוסיפים מים רותחים עד לכיסוי המרכיבים (ועוד קצת מעבר), מביאים לרתיחה ומסירים קצף במידת הצורך.</li>
+                            <li><strong>בישול איטי לשבת:</strong> מעבירים לפלטת שבת (או תנור בחום נמוך של כ-100 מעלות) למשך 12–16 שעות לפחות לקבלת מרקם עשיר, עמוק ומושלם.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -410,8 +449,10 @@
 
             document.getElementById(`section-${tabId}`).classList.remove('hidden');
             const activeBtn = document.getElementById(`tab-${tabId}`);
-            activeBtn.classList.remove('text-white', 'hover:bg-indigo-800');
-            activeBtn.classList.add('bg-white', 'text-indigo-900', 'shadow');
+            if (activeBtn) {
+                activeBtn.classList.remove('text-white', 'hover:bg-indigo-800');
+                activeBtn.classList.add('bg-white', 'text-indigo-900', 'shadow');
+            }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
