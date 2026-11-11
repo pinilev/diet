@@ -69,8 +69,8 @@
                 <button onclick="switchTab('shopping')" id="tab-shopping" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
                     <i class="fa-solid fa-basket-shopping ml-1.5"></i> רשימת קניות
                 </button>
-                <button onclick="switchTab('hamim')" id="tab-hamim" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
-                    <i class="fa-solid fa-pot-food ml-1.5"></i> מתכון חמין
+                <button onclick="switchTab('recipes')" id="tab-recipes" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-book-bookmark ml-1.5"></i> מתכונים
                 </button>
             </nav>
         </div>
@@ -180,6 +180,65 @@
                             <i class="fa-solid fa-ban"></i> מוצרים מעובדים
                         </div>
                         <p class="text-xs text-slate-600">רוטבי ברבקיו, טריאקי, צ'ילי מתוק, חמוצים בחומץ/תחמיץ מתוק.</p>
+                    </div>
+                </div>
+
+                <hr class="border-slate-100">
+
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3 mb-2">
+                        <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm font-extrabold">3</span>
+                        שבת, נשנושים וטיפים לדגים
+                    </h2>
+                    <p class="text-slate-600">הנחיות לשבת (ברכת המוציא), נשנושים בריאים, משקאות וטיפים לרכישת דגים פראיים.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Shabbat Bread -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                        <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg border-b border-slate-200 pb-3">
+                            <i class="fa-solid fa-bread-slice text-indigo-600"></i>
+                            פתרונות לחם/חלה בשבת
+                        </div>
+                        <p class="text-sm text-slate-700 leading-relaxed">
+                            <strong>לחם/חלה מ-100% כוסמין מלא או חיטה מלאה (מומלץ):</strong>
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                            <li>• <strong>הלכתית:</strong> נחשב לחם גמור (מחמשת מיני דגן), ומברכים עליו "המוציא" וברכת המזון.</li>
+                            <li>• <strong>תזונתית:</strong> פחמימה מורכבת בעלת מדד גליקמי נמוך ועשירה בסיבים המאטים ספיגת סוכר.</li>
+                            <li>• <strong>אכילת "כזית" בלבד:</strong> יוצאים ידי חובת קידוש וסעודת שבת באכילת כזית (כ-27-30 גרם, פרוסה אחת), ואת עיקר השובע מבססים על חלבונים, דגים, בשר וירקות.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Snacks & Drinks -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+                        <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg border-b border-slate-200 pb-3">
+                            <i class="fa-solid fa-cookie-bite text-indigo-600"></i>
+                            נשנושים, מתוקים ושתייה
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                            <li>• <strong>נשנושים מומלצים:</strong> חופן אגוזים/שקדים טבעיים, מקלות ירקות עם טחינה/גואקמולה, אדממה מומלח, זיתים.</li>
+                            <li>• <strong>חלופה לגלידה:</strong> יוגורט יווני טבעי מעורבב עם מעט פירות יער קפואים וקינמון, או קרם קוקוס טבעי.</li>
+                            <li>• <strong>שתייה מומלצת:</strong> מים, סודה עם לימון/נענע/ג'ינג'ר, חליטות צמחים, קפה שחור/אספרסו ללא סוכר.</li>
+                            <li>• <strong>דיאט קולה / משקאות זירו:</strong> 0 סוכר ופחמימות, אך מומלץ להגביל לכוס-שתיים ביום כדי להימנע מהיזקקות לטעם מתוק חזק במוח וחומציות יתר.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50/60 p-6 rounded-2xl border border-indigo-100 space-y-4">
+                    <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg border-b border-indigo-100 pb-3">
+                        <i class="fa-solid fa-fish text-indigo-600"></i>
+                        טיפים לרכישת דגים (סלמון וטונה פראיים)
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-700">
+                        <div class="space-y-2">
+                            <p><strong>טונה:</strong> ניצודה בים בלבד (אין טונה מבריכות).</p>
+                            <p><strong>סלמון בר (Wild Caught):</strong> מגיע מציד ימי (אלסקה או נורווגיה). צבעו אדום-כתום עז והוא דל בשומן בהשוואה לסלמון בריכות.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="font-bold text-indigo-900">איפה קונים?</p>
+                            <p class="text-xs text-slate-600">חנויות דגים מתמחות, רשתות טבע/שיווק באזור הקפואים (לחפש כיתוב "Wild Caught" / "ניצוד בטבע"), או יבואני דגים אונליין.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -361,37 +420,112 @@
             </div>
         </section>
 
-        <!-- 7. HAMIM RECIPE TAB -->
-        <section id="section-hamim" class="space-y-6 tab-content hidden">
+        <!-- 7. SHABBAT & SNACKS TAB -->
+        <!-- Removed as requested and merged into Principles tab -->
+
+        <!-- 8. HAMIM RECIPE TAB -->
+        <!-- Removed as requested -->
+
+        <!-- 9. NEW HEALTHY RECIPES TAB -->
+        <section id="section-recipes" class="space-y-6 tab-content hidden">
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
                 <div>
                     <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-utensils text-indigo-600"></i> מתכון לחמין בריא ומותאם לדיאטה
+                        <i class="fa-solid fa-utensils text-indigo-600"></i> מתכונים בריאים ללא סוכר ופחמימות פשוטות
                     </h2>
-                    <p class="text-sm text-slate-500">חמין עשיר בחלבונים איכותיים, שומנים בריאים וירקות שורש — ללא תפוחי אדמה עמילניים וללא סוכר.</p>
+                    <p class="text-sm text-slate-500">מגוון מנות עיקריות, מוקפצים, מרקים וחמין מסורתי מותאם בדיוק לדיאטה.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מצרכים מומלצים:</h3>
-                        <ul class="space-y-2 text-sm text-slate-700">
-                            <li>• <strong>בשר בקר רזים</strong> (נתחי אסאדו רזה / כתף / שייטל חתוכים לקוביות)</li>
-                            <li>• <strong>עצמות רשות / מח</strong> (לתוספת עומק טעם וג'לטין טבעי)</li>
-                            <li>• <strong>קטניות במידה:</strong> כוס שעועית שחורה או לבנה מושרית מראש (או חומוס)</li>
-                            <li>• <strong>דגנים מורכבים:</strong> חצי כוס חיטה מלאה או גריסים</li>
-                            <li>• <strong>ירקות שורש ובצל:</strong> בצלים שלמים, שום שלם, גזרים בודדים (או בטטה קטנה פרוסה במידה מתונה)</li>
-                            <li>• <strong>שומנים ותבלינים:</strong> שמן זית כתית מעולה, פפריקה מתוקה/חריפה, כמון, פלפל שחור ומלח</li>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Recipe 0: Hamim -->
+                    <div class="bg-indigo-50/70 p-5 rounded-2xl border border-indigo-200 space-y-3">
+                        <h3 class="font-bold text-indigo-900 text-base border-b border-indigo-200 pb-2">חמין בריא ומותאם לדיאטה</h3>
+                        <p class="text-xs text-slate-600">עשיר בחלבונים, שומנים בריאים וירקות שורש — ללא תפוחי אדמה עמילניים.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> בשר בקר רזים, עצמות מח, שעועית/חומוס מושרים, חיטה מלאה/גריסים במידה, בצלים שלמים, שום, שמן זית ותבלינים.</li>
+                            <li>• <strong>הכנה:</strong> מטגנים בצל ובשר, מוסיפים קטניות, דגנים ותבלינים, מכסים במים ומבשלים בבישול איטי לשבת (12-16 שעות).</li>
                         </ul>
                     </div>
 
-                    <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-100 space-y-3">
-                        <h3 class="font-bold text-indigo-900 text-base border-b border-indigo-100 pb-2">אופן ההכנה:</h3>
-                        <ol class="space-y-2 text-sm text-slate-700 list-decimal list-inside leading-relaxed">
-                            <li><strong>טיגון ראשוני:</strong> בסיר חמין רחב, מטגנים היטב את הבצלים בשמן זית עד להזהבה. מוסיפים את נתחי הבשר וצורבים מכל הצדדים.</li>
-                            <li><strong>שילוב קטניות ותבלינים:</strong> מוסיפים את השעועית המושרה, הדגנים המלאים (גריסים/חיטה), ראשי השום השלמים והתבלינים.</li>
-                            <li><strong>נוזלים:</strong> מוסיפים מים רותחים עד לכיסוי המרכיבים (ועוד קצת מעבר), מביאים לרתיחה ומסירים קצף במידת הצורך.</li>
-                            <li><strong>בישול איטי לשבת:</strong> מעבירים לפלטת שבת (או תנור בחום נמוך של כ-100 מעלות) למשך 12–16 שעות לפחות לקבלת מרקם עשיר, עמוק ומושלם.</li>
-                        </ol>
+                    <!-- Recipe 1 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">פסטה ללא קמח</h3>
+                        <p class="text-xs text-slate-600">עשויה מאטריות שיריטאקי/קונג'אק או אטריות עדשים ירוקות/שחורות דלות פחמימות.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> שוטפים היטב אטריות שיריטאקי במים חמים, מקפיצים במחבת עם שמן זית, שום קצוץ, רוטב פסטו טבעי או עגבניות מרוסקות ללא סוכר.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 2 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">אורז כרובית / מוקפץ כרובית</h3>
+                        <p class="text-xs text-slate-600">חלופה מושלמת ודלת פחמימות לאורז רגיל.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> טוחנים תפרחות כרובית במעבד מזון למרקם פירורי כעין אורז. מקפיצים במחבת עם שמן זית, בצל קצוץ, שום, מעט רוטב סויה תמרי ועשבי תיבול טריים.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 3 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">פירה כרובית ושום</h3>
+                        <p class="text-xs text-slate-600">קרמי, מנחם וללא תפוחי אדמה עמילניים.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מרתיחים תפרחות כרובית עם שיני שום עד ריכוך מלא. טוחנים בבלנדר מוט עם כף טחינה גולמית או שמן זית, מלח ופלפל שחור עד לקבלת מרקם חלק.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 4 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">חביתת קישואים / חביתת חצילים</h3>
+                        <p class="text-xs text-slate-600">ארוחת בוקר או צהריים עשירה בחלבון וירקות.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מגוררים קישוא או קוביות חציל קטנות, מטגנים במחבת עם שמן זית עד להזהבה. טורפים ביצים עם מלח ופלפל, יוצקים מעל הירקות ומטגנים משני הצדדים.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 5 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק ירקות ירוקים עשיר</h3>
+                        <p class="text-xs text-slate-600">מרק מזין ומחמם עמוס בסיבים ונוגדי חמצון.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מאדים בצל, סלרי, קישואים, ברוקולי ותרד בסיר עם שמן זית. מוסיפים מים רותחים, עשבי תיבול (פטרוזיליה ושמיר), מלח ופלפל, ומבשלים עד ריכוך.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 6 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק פטריות</h3>
+                        <p class="text-xs text-slate-600">מרק עשיר, קרמי ודל פחמימות.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מטגנים בצל ושום פרוסים יחד עם מגוון פטריות טריות (שמפיניון, פורטובלו, יער). מוסיפים מים ומעט קרם קוקוס טבעי או שמנת עזים, מתבלים ומבשלים היטב.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 7 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק אבוקדו קר או חם</h3>
+                        <p class="text-xs text-slate-600">מנה ייחודית, עשירה בשומנים בריאים.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> טוחנים אבוקדו בשל עם מיץ לימון טרי, שום, ציר מרק צלול או מים קרים/חמימים, מלח, מעט כמון ונענע קצוצה לקבלת מרקם קטיפתי.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 8 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מוקפץ איטריות שיזאקי (שיריטאקי)</h3>
+                        <p class="text-xs text-slate-600">מוקפץ אסייתי מהיר ובריא ללא סוכר.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מקפיצים רצועות חזה עוף או טופו עם נבטים, כרוב פרוס, פטריות ואטריות שיריטאקי שטופות. מתבלים ברוטב סויה תמרי, שמן שומשום וג'ינג'ר מגורר.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Recipe 9 -->
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מוקפץ רצועות קישוא (זודלז) וברוקולי</h3>
+                        <p class="text-xs text-slate-600">מנה קלילה, רעננה ועשירה בירקות.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> חותכים קישואים לרצועות אטריות דקות ומפרקים ברוקולי לפרחים קטנים. מקפיצים במחבת חמה עם שמן זית, שום כתוש ומעט מלח גס עד לפריכות.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -409,31 +543,30 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        // Database of foods based on the PDF guide
+        // Database of foods based on all guides and uploaded PDFs
         const foodsDatabase = [
-            { id: 1, name: "בשר בקר רזים (סינטה, פילה, כתף, שייטל)", category: "חלבונים", status: "recommended", desc: "ללא רוטבים מסוכרים או ציפויי פירורי לחם." },
+            { id: 1, name: "בשר בקר רזים (סינטה, פילה, כתף, שייטל, בשר טחון דל שומן)", category: "חלבונים", status: "recommended", desc: "ללא רוטבים מסוכרים או ציפויי פירורי לחם." },
             { id: 2, name: "עופות (חזה עוף, הודו, פרגיות)", category: "חלבונים", status: "recommended", desc: "מקור מצוין לחלבון איכותי ודל שומן." },
-            { id: 3, name: "סלמון בר (Wild Caught) וטונה פראית", category: "חלבונים", status: "recommended", desc: "עשיר באומגה 3 ואיכותי ביותר." },
-            { id: 4, name: "דגים נוספים (סרדינים, דניס, לברק, בקלה)", category: "חלבונים", status: "recommended", desc: "מומלץ לשילוב קבוע בתפריט." },
-            { id: 5, name: "טופו, אדממה, עדשים וחומוס", category: "חלבונים", status: "recommended", desc: "חלבון צמחי איכותי ומזין." },
-            { id: 6, name: "ביצים ומוצרי חלב צאן/קשות (פטה, פרמזן)", category: "חלבונים", status: "recommended", desc: "גבינות קשות ויוגורט יווני טבעי ללא ממתיקים." },
-            { id: 7, name: "שמן זית כתית מעולה, אבוקדו, טחינה גולמית", category: "שומנים", status: "recommended", desc: "שומנים בריאים התומכים באיזון הסוכר." },
-            { id: 8, name: "אגוזי מלך ושקדים טבעיים", category: "שומנים", status: "recommended", desc: "נשנוש מעולה עשיר במינרלים ושומן איכותי." },
-            { id: 9, name: "זרעי צ'יה, פשתן, חמניות ודלעת", category: "שומנים", status: "recommended", desc: "מצוינים לשדרוג סלטים ויוגורט." },
-            { id: 10, name: "ירקות ירוקים (תרד, ברוקולי, קישואים, מלפפון)", category: "ירקות", status: "recommended", desc: "ללא הגבלה, עשירים בסיבים." },
-            { id: 11, name: "עגבניות, פלפלים, כרוב, כרובית, צנונית", category: "ירקות", status: "recommended", desc: "ירקות טריים ובריאים לכל ארוחה." },
-            { id: 12, name: "חמוצים במלח בלבד, זיתים וכרוב כבוש טבעי", category: "ירקות", status: "recommended", desc: "ללא חומץ ותחמיץ מתוק." },
-            { id: 13, name: "פלפל חריף וסחוג ביתי ללא סוכר", category: "ירקות", status: "recommended", desc: "להוספת טעם וחילוף חומרים." },
-            { id: 14, name: "פירות יער (תותים, אוכמניות, פטל)", category: "פירות", status: "recommended", desc: "מומלץ מנה ביום (עשירים בנוגדי חמצון ודלים בסוכר)." },
-            { id: 15, name: "לימון ואבוקדו", category: "פירות", status: "recommended", desc: "לשימוש יומיומי בסלטים ובישולים." },
-            { id: 16, name: "תפוח ירוק, אגס, שזיף (חצי עד יחידה ביום)", category: "פירות", status: "recommended", desc: "פירות במודעות ובמידה מוגבלת." },
-            { id: 17, name: "קינואה, כוסמת, שיבולת שועל מלאה, אורז מלא/אדום, בטטה", category: "פחמימות", status: "recommended", desc: "פחמימות מורכבות במידה מתונה." },
-            { id: 18, name: "סוכר לבן/חום, דבש, סילאן וריבות", category: "אסור", status: "forbidden", desc: "סוכרים מוספים מחוץ לתחום לחלוטין!" },
-            { id: 19, name: "קמח לבן, לחם לבן, פסטה ואורז לבן", category: "אסור", status: "forbidden", desc: "פחמימות פשוטות ומעובדות הגורמות לקפיצת אינסולין." },
+            { id: 3, name: "דגים (סלמון בר, טונה בהירה ואדומה, מקרל, הרינג, בקלה/קוד, הליבוט, סרדינים, דניס, לברק)", category: "חלבונים", status: "recommended", desc: "עשיר באומגה 3 ודגים פראיים מומלצים ביותר." },
+            { id: 4, name: "מוצרי חלב וביצים (ביצים, קפיר, קוטג', יוגורט יווני טבעי, גבינות עיזים/כבשים קשות)", category: "חלבונים", status: "recommended", desc: "מוצרי חלב איכותיים וללא ממתיקים." },
+            { id: 5, name: "חלבון צמחי (טופו, אדממה, עדשים שחורות/ירוקות, חומוס, שעועית, פולי סויה)", category: "חלבונים", status: "recommended", desc: "חלבון צמחי איכותי ומזין." },
+            { id: 6, name: "שומנים בריאים (שמן זית כתית מעולה, אבוקדו, טחינה גולמית)", category: "שומנים", status: "recommended", desc: "שומנים איכותיים התומכים באיזון הסוכר." },
+            { id: 7, name: "זרעים ואגוזים (זרעי צ'יה, פשתן, חמניות, דלעת, שומשום מלא, אגוזי מלך, שקדים)", category: "שומנים", status: "recommended", desc: "נשנוש מעולה עשיר במינרלים ושומן איכותי." },
+            { id: 8, name: "ירקות ירוקים וטריים (תרד, ברוקולי, קישואים, מלפפון, כרוב, כרובית, צנונית, חסה, קייל, סלרי, באק צ'וי, עגבניות, פלפלים)", category: "ירקות", status: "recommended", desc: "ללא הגבלה, עשירים בסיבים תזונתיים." },
+            { id: 9, name: "תחליפי פסטה ודגנים (אטריות קישואים זודלס, דלעת ערמונים, דלעת ספגטי, דלורית)", category: "פחמימות", status: "recommended", desc: "חלופות מצוינות דלות פחמימות ועשירות בסיבים." },
+            { id: 10, name: "אטריות קונג'אק / שיריטאקי / Slim Rice (אורז קונג'אק / Konjac)", category: "פחמימות", status: "recommended", desc: "0 סוכר ודל מאוד בפחמימות." },
+            { id: 11, name: "פסטה ואטריות 100% עדשים אדומות/ירוקות, חומוס, אפונה ירוקה", category: "פחמימות", status: "recommended", desc: "פחמימות מורכבות עשירות בחלבון במידה מתונה." },
+            { id: 12, name: "פחמימות מורכבות במידה (קינואה, כוסמת, שיבולת שועל מלאה, אורז מלא/אדום, בטטה, גריסים)", category: "פחמימות", status: "recommended", desc: "פחמימות מורכבות בעלות מדד גליקמי נמוך." },
+            { id: 13, name: "רטבים ותבלינים (פסטו, חרדל, חזרת, רוטב סויה תמרי, מיסו, ציר מרק עם מעט מלח)", category: "ירקות", status: "recommended", desc: "לשדרוג טעמים ללא סוכר מוסף." },
+            { id: 14, name: "שום אורגני ועשבי תיבול (כוסברה, פטרוזיליה, נענע, אורגנו, טימין, כורכום, כמון, פפריקה, ג'ינג'ר)", category: "ירקות", status: "recommended", desc: "תבלינים טבעיים ועשבי תיבול טריים." },
+            { id: 15, name: "חמוצים ומותססים (קימצ'י, כרוב כבוש מקורר, מלפפונים חמוצים במלח בלבד, זיתים)", category: "ירקות", status: "recommended", desc: "ללא שימורים בחומץ מתוק, מותססים טבעי במלח." },
+            { id: 16, name: "פירות מומלצים (תותים, אוכמניות, פטל, חמוציות טריות/קפואות, אבוקדו, לימון/ליים)", category: "פירות", status: "recommended", desc: "עשירים בנוגדי חמצון, מנה ביום." },
+            { id: 17, name: "פירות במודעות (תפוח ירוק, אגס, שזיף)", category: "פירות", status: "recommended", desc: "חצי יחידה עד יחידה ביום." },
+            { id: 18, name: "סוכר לבן/חום, דבש, סילאן, ריבות, קינוחים, מאפים ומשקאות מתוקים", category: "אסור", status: "forbidden", desc: "סוכרים מוספים מחוץ לתחום לחלוטין!" },
+            { id: 19, name: "קמח לבן, לחם לבן, פסטה רגילה, אורז לבן ודגני בוקר", category: "אסור", status: "forbidden", desc: "פחמימות פשוטות ומעובדות." },
             { id: 20, name: "תירס (טרי או בקופסה) ופירות יבשים", category: "אסור", status: "forbidden", desc: "עתירי עמילן וסוכר." },
-            { id: 21, name: "מיצי פירות (גם סחוט טבעי)", category: "אסור", status: "forbidden", desc: "מרוכזים בסוכר פירות (פרוקטוז) ללא סיבים." },
-            { id: 22, name: "רוטבי ברבקיו, טריאקי וצ'ילי מתוק", category: "אסור", status: "forbidden", desc: "מוצרים מעובדים עתירי סוכר סמוי." },
-            { id: 23, name: "ענבים, בננות, מנגו, אבטיח, תמרים ותאנים", category: "אסור", status: "forbidden", desc: "פירות עתירי סוכר להימנע מהם." }
+            { id: 21, name: "מיצי פירות (גם סחוט טבעי)", category: "אסור", status: "forbidden", desc: "מרוכזים בסוכר ללא סיבים." },
+            { id: 22, name: "ענבים, בננות, מנגו, אבטיח, תמרים ותאנים", category: "אסור", status: "forbidden", desc: "פירות עתירי סוכר להימנע מהם." }
         ];
 
         // State for Daily Meal Planner
