@@ -3,127 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תזונה</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234338ca'><path d='M18 2h-8C6.1 2 3 5.1 3 9c0 2.4 1.2 4.5 3 5.7V20c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5.3c1.8-1.2 3-3.3 3-5.7 0-3.9-3.1-7-7-7zm0 18h-8v-2h8v2zm0-4h-8v-1.5h8V16zm-4-3.5h-4V11h4v1.5z'/></svg>">
-    <!-- Tailwind CSS CDN -->
+    <title>מדריך תזונה חכם</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
+    <!-- Font Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Assistant', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
     <style>
-        body {
-            font-family: 'Assistant', sans-serif;
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f8fafc;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <!-- Navigation Bar -->
-    <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-end items-center gap-4">
-            <!-- Navigation Tabs -->
-            <nav class="flex flex-wrap gap-1.5 sm:gap-2 justify-center bg-indigo-950/60 p-1.5 rounded-xl border border-indigo-800/50">
-                <button onclick="switchTab('guide')" id="tab-guide" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all bg-white text-indigo-900 shadow">
+    <!-- Header & Navigation -->
+    <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-inner">
+                    <i class="fa-solid fa-heart-pulse text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight">מדריך תזונה חכם</h1>
+                    <p class="text-xs text-indigo-200">ללא סוכר ופחמימות פשוטות</p>
+                </div>
+            </div>
+
+            <!-- Navigation Bar -->
+            <nav class="flex flex-wrap items-center justify-center gap-1.5 bg-indigo-950/60 p-1.5 rounded-2xl border border-indigo-800/80">
+                <button onclick="switchTab('guide')" id="tab-guide" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-white text-indigo-900 shadow">
                     <i class="fa-solid fa-book-open ml-1.5"></i> עקרונות
                 </button>
-                <button onclick="switchTab('foods')" id="tab-foods" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
-                    <i class="fa-solid fa-utensils ml-1.5"></i> מדריך מזונות
+                <button onclick="switchTab('foods')" id="tab-foods" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-apple-whole ml-1.5"></i> מדריך מזונות
                 </button>
-                <button onclick="switchTab('planner')" id="tab-planner" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
-                    <i class="fa-solid fa-calculator ml-1.5"></i> תכנון יומי
-                </button>
-                <button onclick="switchTab('calculator')" id="tab-calculator" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
-                    <i class="fa-solid fa-scale-balanced ml-1.5"></i> מחשבון אישי
-                </button>
-                <button onclick="switchTab('shopping')" id="tab-shopping" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
-                    <i class="fa-solid fa-basket-shopping ml-1.5"></i> רשימת קניות
-                </button>
-                <button onclick="switchTab('recipes-main')" id="tab-recipes-main" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
+                <button onclick="switchTab('recipes-main')" id="tab-recipes-main" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
                     <i class="fa-solid fa-utensils ml-1.5"></i> עיקריות
                 </button>
-                <button onclick="switchTab('recipes-salads')" id="tab-recipes-salads" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
+                <button onclick="switchTab('recipes-salads')" id="tab-recipes-salads" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
                     <i class="fa-solid fa-seedling ml-1.5"></i> סלטים
                 </button>
-                <button onclick="switchTab('recipes-soups')" id="tab-recipes-soups" class="nav-btn px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all text-white hover:bg-indigo-800">
+                <button onclick="switchTab('recipes-soups')" id="tab-recipes-soups" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
                     <i class="fa-solid fa-bowl-food ml-1.5"></i> מרקים
+                </button>
+                <button onclick="switchTab('planner')" id="tab-planner" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-calendar-days ml-1.5"></i> תכנון יומי
+                </button>
+                <button onclick="switchTab('calculator')" id="tab-calculator" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-calculator ml-1.5"></i> מחשבון אישי
+                </button>
+                <button onclick="switchTab('shopping')" id="tab-shopping" class="nav-btn px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-white hover:bg-indigo-800">
+                    <i class="fa-solid fa-cart-shopping ml-1.5"></i> רשימת קניות
                 </button>
             </nav>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
 
-        <!-- 1. HOME TAB REMOVED -->
-
-        <!-- 2. GUIDE / PRINCIPLES TAB -->
+        <!-- 1. PRINCIPLES TAB -->
         <section id="section-guide" class="space-y-6 tab-content">
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3 mb-2">
-                        <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm font-extrabold">1</span>
-                        עקרונות יסוד הדיאטה
-                    </h2>
-                    <p class="text-slate-600">הבסיס המדעי והמעשי לשמירה על בריאות איתנה ותחושת שובע ממושכת.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-indigo-50/50 p-5 rounded-2xl border border-indigo-100 space-y-3">
-                        <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg">
-                            <i class="fa-solid fa-bullseye text-indigo-600"></i>
-                            מטרת העל
-                        </div>
-                        <p class="text-slate-700 text-sm leading-relaxed">
-                            הוצאת סוכרים מוספים ופחמימות מעובדות בעלות מדד גליקמי גבוה, והחלפתם במזונות מלאים, חלבונים איכותיים, שומנים בריאים וירקות.
-                        </p>
-                    </div>
-                    <div class="bg-violet-50/50 p-5 rounded-2xl border border-violet-100 space-y-3">
-                        <div class="flex items-center gap-3 text-violet-900 font-bold text-lg">
-                            <i class="fa-solid fa-scale-balanced text-violet-600"></i>
-                            שמירה על איזון
-                        </div>
-                        <p class="text-slate-700 text-sm leading-relaxed">
-                            מתמקדים במזון טבעי ולא מעובד השומר על רמות סוכר ואינסולין יציבות בדם, מה שמונע קפיצות אנרגיה ותחושת רעב פתאומית.
-                        </p>
-                    </div>
-                </div>
-
-                <hr class="border-slate-100">
-
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3 mb-2">
-                        <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm font-extrabold">2</span>
-                        ממה להימנע לחלוטין (מזונות "מחוץ לתחום")
-                    </h2>
-                    <p class="text-slate-600">רשימת המרכיבים והמוצרים שיש להוציא לחלוטין מהתפריט.</p>
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">עקרונות יסוד והנחיות תזונה</h2>
+                    <p class="text-sm text-slate-500 mt-1">המטרה: הוצאת סוכרים מוספים ופחמימות פשוטות והחלפתם במזונות מלאים, חלבונים איכותיים ושומנים בריאים.</p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -153,68 +100,34 @@
                     </div>
                 </div>
 
-                <hr class="border-slate-100">
-
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3 mb-2">
-                        <span class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm font-extrabold">3</span>
-                        שבת, נשנושים וטיפים לדגים
-                    </h2>
-                    <p class="text-slate-600">הנחיות לשבת (ברכת המוציא), נשנושים בריאים, משקאות וטיפים לרכישת דגים פראיים.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Shabbat Bread -->
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
-                        <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg border-b border-slate-200 pb-3">
-                            <i class="fa-solid fa-bread-slice text-indigo-600"></i>
-                            פתרונות לחם/חלה בשבת
-                        </div>
-                        <p class="text-sm text-slate-700 leading-relaxed">
-                            <strong>לחם/חלה מ-100% כוסמין מלא או חיטה מלאה (מומלץ):</strong>
-                        </p>
-                        <ul class="space-y-2 text-xs text-slate-600 leading-relaxed">
-                            <li>• <strong>הלכתית:</strong> נחשב לחם גמור (מחמשת מיני דגן), ומברכים עליו "המוציא" וברכת המזון.</li>
-                            <li>• <strong>תזונתית:</strong> פחמימה מורכבת בעלת מדד גליקמי נמוך ועשירה בסיבים המאטים ספיגת סוכר.</li>
-                            <li>• <strong>אכילת "כזית" בלבד:</strong> יוצאים ידי חובת קידוש וסעודת שבת באכילת כזית (כ-27-30 גרם, פרוסה אחת), ואת עיקר השובע מבססים על חלבונים, דגים, בשר וירקות.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Snacks & Drinks -->
-                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
-                        <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg border-b border-slate-200 pb-3">
-                            <i class="fa-solid fa-cookie-bite text-indigo-600"></i>
-                            נשנושים, מתוקים ושתייה
-                        </div>
-                        <ul class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                <!-- Shabbat & Snacks Content integrated here -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-cookie-bite text-indigo-600"></i> נשנושים, מתוקים ושתייה
+                        </h3>
+                        <ul class="space-y-2 text-xs text-slate-700 leading-relaxed">
                             <li>• <strong>נשנושים מומלצים:</strong> חופן אגוזים/שקדים טבעיים, מקלות ירקות עם טחינה/גואקמולה, אדממה מומלח, זיתים.</li>
                             <li>• <strong>חלופה לגלידה:</strong> יוגורט יווני טבעי מעורבב עם מעט פירות יער קפואים וקינמון, או קרם קוקוס טבעי.</li>
-                            <li>• <strong>שתייה מומלצת:</strong> מים, סודה עם לימון/נענע/ג'ינג'ר, חליטות צמחים, קפה שחור/אספרסו ללא סוכר.</li>
-                            <li>• <strong>דיאט קולה / משקאות זירו:</strong> 0 סוכר ופחמימות, אך מומלץ להגביל לכוס-שתיים ביום כדי להימנע מהיזקקות לטעם מתוק חזק במוח וחומציות יתר.</li>
+                            <li>• <strong>שתייה מומלצת:</strong> מים, סודה עם לימון/נענע/ג'ינג'ר, חליטות צמחים, קפה שחור/אספרסו ללא סוכר. דיאט קולה/זירו במידה מוגבלת.</li>
                         </ul>
                     </div>
-                </div>
 
-                <div class="bg-indigo-50/60 p-6 rounded-2xl border border-indigo-100 space-y-4">
-                    <div class="flex items-center gap-3 text-indigo-900 font-bold text-lg border-b border-indigo-100 pb-3">
-                        <i class="fa-solid fa-fish text-indigo-600"></i>
-                        טיפים לרכישת דגים (סלמון וטונה פראיים)
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-700">
-                        <div class="space-y-2">
-                            <p><strong>טונה:</strong> ניצודה בים בלבד (אין טונה מבריכות).</p>
-                            <p><strong>סלמון בר (Wild Caught):</strong> מגיע מציד ימי (אלסקה או נורווגיה). צבעו אדום-כתום עז והוא דל בשומן בהשוואה לסלמון בריכות.</p>
-                        </div>
-                        <div class="space-y-2">
-                            <p class="font-bold text-indigo-900">איפה קונים?</p>
-                            <p class="text-xs text-slate-600">חנויות דגים מתמחות, רשתות טבע/שיווק באזור הקפואים (לחפש כיתוב "Wild Caught" / "ניצוד בטבע"), או יבואני דגים אונליין.</p>
-                        </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+                        <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                            <i class="fa-solid fa-fish text-indigo-600"></i> טיפים לרכישת דגים
+                        </h3>
+                        <ul class="space-y-2 text-xs text-slate-700 leading-relaxed">
+                            <li>• <strong>טונה:</strong> ניצודה בים בלבד (אין טונה מבריכות).</li>
+                            <li>• <strong>סלמון בר (Wild Caught):</strong> מגיע מציד ימי (אלסקה או נורווגיה). צבעו אדום-כתום עז והוא דל בשומן בהשוואה לסלמון בריכות.</li>
+                            <li>• <strong>איפה קונים:</strong> חנויות דגים מתמחות, רשתות טבע/שיווק באזור הקפואים (לחפש כיתוב Wild Caught).</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. FOODS GUIDE TAB -->
+        <!-- 2. FOODS GUIDE TAB -->
         <section id="section-foods" class="space-y-6 tab-content hidden">
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -222,7 +135,6 @@
                         <h2 class="text-2xl font-bold text-slate-800">מדריך מזונות מקיף</h2>
                         <p class="text-sm text-slate-500">חפש רכיבים ובדוק האם הם מותרים או אסורים לפי המדריך.</p>
                     </div>
-                    <!-- Search & Filter Controls -->
                     <div class="flex flex-wrap gap-2 w-full md:w-auto">
                         <div class="relative flex-grow md:w-64">
                             <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 text-slate-400"></i>
@@ -241,14 +153,219 @@
                     </div>
                 </div>
 
-                <!-- Foods Cards Grid -->
                 <div id="foods-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <!-- Populated dynamically via JS -->
+                    <!-- Populated dynamically -->
                 </div>
             </div>
         </section>
 
-        <!-- 4. MEAL PLANNER TAB -->
+        <!-- 3. MAIN DISHES TAB -->
+        <section id="section-recipes-main" class="space-y-6 tab-content hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-utensils text-indigo-600"></i> מנות עיקריות
+                    </h2>
+                    <p class="text-sm text-slate-500">מנות עיקריות מזינות על בסיס קטניות, עוף רזה, בשר וירקות מותאמים.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">צ'ילי עדשים מחמם</h4>
+                        <p class="text-xs text-slate-600">תבשיל עדשים עשיר ופיקנטי מחמם ומלא בחלבון צמחי.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מטגנים בצל, שום ופלפלים. מוסיפים עדשים שחורות, עגבניות מרוסקות, כמון, פפריקה וציר מרק. מבשלים בבישול איטי עד לסמיכות מושלמת.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">טקו עדשים וגואקמולה</h4>
+                        <p class="text-xs text-slate-600">מנה צבעונית, מרעננת ועשירה בשומנים בריאים.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מקפיצים עדשים מבושלות עם תבליני טקו. מגישים בעלי חסה פריכים עם גואקמולה טרי.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">קארי עדשים אדומות</h4>
+                        <p class="text-xs text-slate-600">תבשיל קארי קרמי ומזין על בסיס קרם קוקוס טבעי.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מבשלים עדשים אדומות עם בצל, שום, ג'ינג'ר, אבקת קארי וקרם קוקוס עד לקבלת מרקם קרמי עשיר.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מג'דרה מזינה</h4>
+                        <p class="text-xs text-slate-600">שילוב קלאסי של אורז מלא/אדום והרבה עדשים יחד עם בצל מטוגן.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> יחס של 1:1 בין עדשים לאורז מלא יחד עם המון בצל מטוגן בשמן זית ותבלינים.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מוקפץ עוף וירקות</h4>
+                        <p class="text-xs text-slate-600">מוקפץ אסייתי עשיר בחלבון עם רצועות חזה עוף וירקות פריכים.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מקפיצים רצועות חזה עוף עם ירקות פריכים ורוטב סויה תמרי איכותי.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">ארוחת תנור: אנטיפסטי וטופו במרינדה</h4>
+                        <p class="text-xs text-slate-600">ארוחה קלה להכנה בתבנית אחת בתנור.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> אופים פרוסות טופו וירקות שורש מותרים במרינדת שמן זית, שום ותבלינים עד להזהבה.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מסבחה שעועית לימה / בובס</h4>
+                        <p class="text-xs text-slate-600">מנה חמה, רכה ונימוחה בפה.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מבשלים שעועית לימה על אש קטנה עם בצלים עד שמתרככת. מוסיפים שמן זית, לימון ותבלינים.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SALADS TAB -->
+        <section id="section-recipes-salads" class="space-y-6 tab-content hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-seedling text-indigo-600"></i> סלטים מרעננים
+                    </h2>
+                    <p class="text-sm text-slate-500">סלטים עשירים בנוגדי חמצון, סיבים תזונתיים וחלבון איכותי.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט חסה פקאנים ורוטב תפוז-פרג</h4>
+                        <p class="text-xs text-slate-600">סלט אלגנטי וחגיגי עם רוטב הדרים עשיר.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> חסה ערבית פריכה, אגוזי פקאן קלויים, עלי ארוגולה קצוצים.</li>
+                            <li>• <strong>רוטב:</strong> שמן זית, לימון, מיץ תפוזים סחוט, חרדל דיז'ון, פרג לא טחון.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט ירוקים וקטניות עשיר</h4>
+                        <p class="text-xs text-slate-600">ארוחה שלמה בקערה אחת.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> ירקות טריים, עלים ירוקים, אגוזים וזרעים, גרגרי חומוס מבושלים או עדשים שחורות.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט סלק ושומר</h4>
+                        <p class="text-xs text-slate-600">סלט עשיר בנוגדי חמצון, מרענן ודל פחמימות פשוטות.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> סלק אפוי או מבושל, שומר פרוס דק, שמן זית, מיץ לימון ועלי נענע.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קינואה ושעועית שחורה</h4>
+                        <p class="text-xs text-slate-600">שילוב מעולה של פחמימה מורכבת וחלבון צמחי.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> קינואה מבושלת, שעועית שחורה, כוסברה קצוצה, מיץ ליים ושמן זית.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קיסר קלאסי</h4>
+                        <p class="text-xs text-slate-600">סלט הקיסר המסורתי עם ביצה קשה.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> עלי חסה רומיין פריכים, פרמזן מגוררת, רוטב קיסר קלאסי על בסיס שמן זית.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט טונה אמיתי</h4>
+                        <p class="text-xs text-slate-600">סלט משביע ועשיר באומגה 3 וחלבון איכותי.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> טונה איכותית במים/שמן זית, בצל סגול, מלפפון חמוץ ומעט מיונז איכותי או שמן זית ולימון.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט גבינת עיזים ותותים</h4>
+                        <p class="text-xs text-slate-600">סלט גורמה עשיר המשלב ירוקים, פירות יער מותרים וגבינה איכותית.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> עלי בייבי ותרד טריים, תותים פרוסים, גבינת עיזים ואגוזי פקאן טבעיים.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט איטלקי מרענן</h4>
+                        <p class="text-xs text-slate-600">סלט צבעוני ועמוס בירקות טריים וזיתים.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> עגבניות שרי, מלפפון, זיתי קלמטה, בצל סגול ושמן זית כתית מעולה.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קייל ובצל סגול מוחמץ</h4>
+                        <p class="text-xs text-slate-600">עלים ירוקים עשירים בנוגדי חמצון עם טוויסט חמצמץ מושלם.</p>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>מצרכים:</strong> עלי קייל קצוצים, בצל סגול מוחמץ ושקדים פרוסים קלויים.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SOUPS TAB -->
+        <section id="section-recipes-soups" class="space-y-6 tab-content hidden">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-bowl-food text-indigo-600"></i> מרקים מחממים ומזינים
+                    </h2>
+                    <p class="text-sm text-slate-500">מרקים עשירים בירקות שורש, ירוקים וקטניות לחימום השלם.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק גזר קטיפתי</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מבשלים גזרים ובצל בסיר עם ציר מרק ומעט ג'ינג'ר. טוחנים לקרם חלק ומוסיפים טיפת שמן זית.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק קינואה וירקות מזין</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מבשלים קינואה יחד עם קוביות קישואים, סלרי, בצל ועשבי תיבול במרק צלול.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק מלפפונים קר</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> טוחנים מלפפונים טריים עם יוגורט יווני, שום, נענע, לימון ומלח. מקררים היטב.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק ירקות ירוקים קטיפתי</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מאדים תרד, ברוקולי וקישואים עם שמן זית, מוסיפים מים וטוחנים למרק ירוק עשיר.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק צ'ילי ירקות עם שעועית</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מבשלים עגבניות מרוסקות עם שעועית אדומה/שחורה, בצל, שום, פלפלים חריפים, כמון ופפריקה מעושנת.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">נזיד ירקות שורש אירי</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מבשלים בבישול איטי קוביות סלרי, בצל, שום ועשבי תיבול בציר מרק עשיר.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק ירקות ירוקים עשיר</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מאדים בצל, סלרי, קישואים, ברוקולי ותרד עם שמן זית. מוסיפים מים, עשבי תיבול ותבלינים.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק פטריות</h4>
+                        <ul class="space-y-1 text-xs text-slate-700">
+                            <li>• <strong>הכנה:</strong> מטגנים בצל ושום עם פטריות טריות, מוסיפים מים ומעט קרם קוקוס טבעי או שמנת.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. MEAL PLANNER TAB -->
         <section id="section-planner" class="space-y-6 tab-content hidden">
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -267,17 +384,15 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- Available Ingredients Selector -->
                     <div class="lg:col-span-2 bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
                         <h3 class="font-bold text-slate-700 flex items-center gap-2">
                             <i class="fa-solid fa-plus-circle text-indigo-600"></i> הוסף רכיב לארוחות היום
                         </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[450px] overflow-y-auto p-1" id="planner-ingredients-list">
-                            <!-- Populated via JS -->
+                            <!-- Populated dynamically -->
                         </div>
                     </div>
 
-                    <!-- Selected Daily Menu Summary -->
                     <div class="bg-indigo-900 text-white p-6 rounded-2xl flex flex-col justify-between shadow-lg">
                         <div class="space-y-4">
                             <div class="flex items-center justify-between border-b border-indigo-800 pb-3">
@@ -285,7 +400,7 @@
                                 <span id="selected-count" class="bg-indigo-800 text-indigo-200 text-xs px-2.5 py-1 rounded-full font-bold">0 פריטים</span>
                             </div>
                             <ul id="selected-items-list" class="space-y-2.5 max-h-[320px] overflow-y-auto text-sm">
-                                <li class="text-indigo-300 text-center py-8 italic">עדיין לא נבחרו רכיבים. בחר מתוך רשימת המזונות משמאל.</li>
+                                <li class="text-indigo-300 text-center py-8 italic">עדיין לא נבחרו רכיבים.</li>
                             </ul>
                         </div>
                         <div class="pt-6 border-t border-indigo-800 mt-4">
@@ -299,7 +414,7 @@
             </div>
         </section>
 
-        <!-- 5. PERSONAL CALCULATOR TAB -->
+        <!-- 7. PERSONAL CALCULATOR TAB -->
         <section id="section-calculator" class="space-y-6 tab-content hidden">
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
                 <div>
@@ -308,7 +423,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Calculator Form -->
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
                         <div class="space-y-2">
                             <label class="block text-xs font-bold text-slate-700">משקל (ק"ג)</label>
@@ -336,349 +450,56 @@
                         </button>
                     </div>
 
-                    <!-- Calculator Results -->
-                    <div class="bg-indigo-900 text-white p-6 rounded-2xl flex flex-col justify-between shadow-lg">
-                        <div class="space-y-6">
-                            <h3 class="font-bold text-lg text-indigo-100 border-b border-indigo-800 pb-3">תוצאות והמלצות עבורך</h3>
+                    <div class="bg-indigo-900 text-white p-6 rounded-2xl flex flex-col justify-between shadow-lg space-y-6">
+                        <div class="space-y-4">
+                            <h3 class="font-bold text-lg text-indigo-100 border-b border-indigo-800 pb-3">תוצאות חישוב אישי</h3>
                             
-                            <div class="bg-indigo-800/60 p-4 rounded-xl space-y-1">
-                                <span class="text-xs text-indigo-300">מדד מסת גוף (BMI):</span>
-                                <div class="flex items-baseline gap-2">
-                                    <span id="result-bmi" class="text-2xl font-extrabold text-white">37.0</span>
-                                    <span id="result-bmi-status" class="text-xs px-2 py-0.5 rounded bg-amber-500/80 text-white font-bold">השמנת יתר</span>
+                            <div class="bg-indigo-800/80 p-4 rounded-xl flex items-center justify-between">
+                                <span class="text-sm text-indigo-200">מדד מסת גוף (BMI):</span>
+                                <div class="flex items-center gap-2">
+                                    <span id="result-bmi" class="text-xl font-extrabold text-white">0</span>
+                                    <span id="result-bmi-status" class="text-xs px-2 py-0.5 rounded text-white font-bold bg-indigo-600">-</span>
                                 </div>
                             </div>
 
-                            <div class="bg-indigo-800/60 p-4 rounded-xl space-y-1">
-                                <span class="text-xs text-indigo-300">הערכת הוצאה קלורית יומית (TDEE):</span>
-                                <div class="text-2xl font-extrabold text-white"><span id="result-tdee">2,350</span> <span class="text-sm font-normal text-indigo-200">קק"ל / ליום</span></div>
+                            <div class="bg-indigo-800/80 p-4 rounded-xl flex items-center justify-between">
+                                <span class="text-sm text-indigo-200">הוצאה אנרגטית יומית (TDEE):</span>
+                                <div class="flex items-center gap-1.5">
+                                    <span id="result-tdee" class="text-xl font-extrabold text-white">0</span>
+                                    <span class="text-xs text-indigo-300">קלוריות/יום</span>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="text-xs text-indigo-100 space-y-2 leading-relaxed bg-indigo-950/40 p-4 rounded-xl">
-                                <p class="font-bold text-indigo-200"><i class="fa-solid fa-triangle-exclamation ml-1"></i> דגש רפואי חשוב:</p>
-                                <p>בכל שינוי תזונתי או ירידה במשקל, במיוחד בשילוב תרופות מרשם קבועות (כגון Depalept Chrono או Cipralex), מומלץ תמיד להתייעץ עם הרופא המטפל או דיאטני/ת קליני/ת.</p>
-                            </div>
+                        <div class="bg-indigo-950/80 p-4 rounded-xl text-xs space-y-1.5 border border-indigo-800">
+                            <p class="font-bold text-indigo-200"><i class="fa-solid fa-circle-info ml-1"></i> המלצה אישית:</p>
+                            <p class="text-indigo-100 leading-relaxed">שמירה על גירעון קלורי מתון בשילוב תזונה עשירה בחלבונים ושומנים בריאים תבטיח ירידה בריאה ובטוחה במשקל.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. SHOPPING LIST TAB -->
+        <!-- 8. SHOPPING LIST TAB -->
         <section id="section-shopping" class="space-y-6 tab-content hidden">
             <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-800">רשימת קניות מרוכזת למדריך</h2>
-                        <p class="text-sm text-slate-500">כל המצרכים המומלצים מתוך מדריך התזונה, מוכנים להעתקה או לשמירה ב-Google Keep.</p>
+                        <h2 class="text-2xl font-bold text-slate-800">רשימת קניות מרוכזת</h2>
+                        <p class="text-sm text-slate-500">כל הרכיבים המומלצים מהמדריך והמתכונים מסודרים לקניות.</p>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="copyShoppingList()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow">
+                    <div class="flex items-center gap-3">
+                        <button onclick="copyShoppingList()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl text-sm font-semibold transition-all">
                             <i class="fa-solid fa-copy ml-1.5"></i> העתק רשימה
                         </button>
-                        <button onclick="openInKeep()" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-all shadow">
-                            <i class="fa-solid fa-note-sticky ml-1.5"></i> שמור ב-Google Keep
+                        <button onclick="openInKeep()" class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 shadow-sm">
+                            <i class="fa-solid fa-note-sticky"></i> שמור ב-Google Keep
                         </button>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <div id="shopping-list-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Populated via JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. SHABBAT & SNACKS TAB -->
-        <!-- Removed as requested and merged into Principles tab -->
-
-        <!-- 8. HAMIM RECIPE TAB -->
-        <!-- Removed as requested -->
-
-        <!-- 9. RECIPES - MAIN DISHES & HAMIM -->
-        <section id="section-recipes-main" class="space-y-6 tab-content hidden">
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-pot-food text-indigo-600"></i> מנות עיקריות
-                    </h2>
-                    <p class="text-sm text-slate-500">תבשילים מזינים, עשירים בחלבונים ושומנים בריאים ללא פחמימות פשוטות.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Lentil Chili -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">צ'ילי עדשים מחמם (45-Minute Lentil Chili)</h4>
-                        <p class="text-xs text-slate-600">נזיד עשיר בחלבון צמחי וסיבים תזונתיים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עדשים ירוקות/שחורות, עגבניות מרוסקות, בצל, שום, כמון ופפריקה מעושנת.</li>
-                            <li>• <strong>הכנה:</strong> מבשלים יחד את העדשים והירקות עם התבלינים עד לקבלת סמיכות עמוקה ועשירה.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Lentil Tacos -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">טאקו עדשים וגואקמולה מנגו</h4>
-                        <p class="text-xs text-slate-600">מנה מקסיקנית בריאה וצבעונית עתירת חלבון.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עדשים מתובלות בתבליני טאקו, עלי חסה גדולים כמעטפת טאקו, גואקמולה אבוקדו.</li>
-                            <li>• <strong>הכנה:</strong> ממלאים את עלי החסה בעדשים מתובלות ומוסיפים מעל גואקמולה טרי.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Red Lentil Curry -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">קארי עדשים אדומות בסיר לחץ (Instant Pot Curry)</h4>
-                        <p class="text-xs text-slate-600">תבשיל קארי עשיר, קרמי ומנחם.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עדשים אדומות, קרם קוקוס טבעי, ג'ינג'ר, שום ואבקת קארי איכותית.</li>
-                            <li>• <strong>הכנה:</strong> מבשלים יחד עד לקבלת מרקם קרמי עשיר ומזין.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Recipe 1 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">פסטה ללא קמח</h4>
-                        <p class="text-xs text-slate-600">עשויה מאטריות שיריטאקי/קונג'אק או אטריות עדשים ירוקות/שחורות דלות פחמימות.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> שוטפים היטב אטריות שיריטאקי במים חמים, מקפיצים במחבת עם שמן זית, שום קצוץ, רוטב פסטו טבעי או עגבניות מרוסקות ללא סוכר.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Recipe 2 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">אורז כרובית / מוקפץ כרובית</h4>
-                        <p class="text-xs text-slate-600">חלופה מושלמת ודלת פחמימות לאורז רגיל.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> טוחנים תפרחות כרובית במעבד מזון למרקם פירורי כעין אורז. מקפיצים במחבת עם שמן זית, בצל קצוץ, שום, מעט רוטב סויה תמרי ועשבי תיבול טריים.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Recipe 3 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">פירה כרובית ושום</h4>
-                        <p class="text-xs text-slate-600">קרמי, מנחם וללא תפוחי אדמה עמילניים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מרתיחים תפרחות כרובית עם שיני שום עד ריכוך מלא. טוחנים בבלנדר מוט עם כף טחינה גולמית או שמן זית, מלח ופלפל שחור עד לקבלת מרקם חלק.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Recipe 4 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">חביתת קישואים / חביתת חצילים</h4>
-                        <p class="text-xs text-slate-600">ארוחת בוקר או צהריים עשירה בחלבון וירקות.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מגוררים קישוא או קוביות חציל קטנות, מטגנים במחבת עם שמן זית עד להזהבה. טורפים ביצים עם מלח ופלפל, יוצקים מעל הירקות ומטגנים משני הצדדים.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Recipe 8 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מוקפץ איטריות שיזאקי (שיריטאקי)</h4>
-                        <p class="text-xs text-slate-600">מוקפץ אסייתי מהיר ובריא ללא סוכר.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מקפיצים רצועות חזה עוף או טופו עם נבטים, כרוב פרוס, פטריות ואטריות שיריטאקי שטופות. מתבלים ברוטב סויה תמרי, שמן שומשום וג'ינג'ר מגורר.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Recipe 9 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מוקפץ רצועות קישוא (זודלז) וברוקולי</h4>
-                        <p class="text-xs text-slate-600">מנה קלילה, רעננה ועשירה בירקות.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> חותכים קישואים לרצועות אטריות דקות ומפרקים ברוקולי לפרחים קטנים. מקפיצים במחבת חמה עם שמן זית, שום כתוש ומעט מלח גס עד לפריכות.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 10. RECIPES - SALADS -->
-        <section id="section-recipes-salads" class="space-y-6 tab-content hidden">
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-seedling text-indigo-600"></i> סלטים מרעננים
-                    </h2>
-                    <p class="text-sm text-slate-500">סלטים עשירים בנוגדי חמצון, סיבים תזונתיים וחלבון איכותי.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Salad 1: Beet Fennel Salad -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט סלק ושומר (Beet & Fennel Salad)</h4>
-                        <p class="text-xs text-slate-600">סלט עשיר בנוגדי חמצון, מרענן ודל פחמימות פשוטות.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> סלק אפוי או מבושל חתוך לפרוסות, שומר פרוס דק, שמן זית, מיץ לימון, עלי נענע קצוצים ומלח גס.</li>
-                            <li>• <strong>הכנה:</strong> מערבבים את רצועות השומר והסלק בקערה, מתבלים בשמן זית, לימון ונענע טרייה.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 2: Black Bean Quinoa Salad -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קינואה ושעועית שחורה עם רוטב תפוז-ליים</h4>
-                        <p class="text-xs text-slate-600">שילוב מעולה של פחמימה מורכבת וחלבון צמחי.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> קינואה מבושלת מראש, שעועית שחורה מבושלת, כוסברה קצוצה, מיץ ליים טרי, מעט גרידת תפוז ושמן זית.</li>
-                            <li>• <strong>הכנה:</strong> מערבבים את כל רכיבי הסלט ומזלפים מעל את רוטב הליים ותפוז המרענן.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 3: Vegan Caesar Salad -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קיסר ירוק עשיר (Vegan Caesar)</h4>
-                        <p class="text-xs text-slate-600">גרסה בריאה ומזינה לסלט הקיסר הקלאסי על בסיס עלי רומיין ורוטב קרמי.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עלי חסה רומיין פריכים, רוטב טחינה-לימון-שום וחרדל דיז'ון, ושקדים קלויים קצוצים במקום קרוטונים עתירי קמח.</li>
-                            <li>• <strong>הכנה:</strong> קורעים את עלי החסה, מערבבים עם הרוטב הקרמי ומפזרים מעל שקדים קלויים לפריכות.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 4: Chickpea Tuna Style Salad -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט "טונה" חומוס צמחי</h4>
-                        <p class="text-xs text-slate-600">סלט משביע ועשיר בחלבון צמחי וסיבים תזונתיים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> גרגירי חומוס מבושלים מעוכים קלות, מלפפון חמוץ במלח קצוץ, בצל סגול, מיץ לימון ומיונז איכותי או טחינה גולמית.</li>
-                            <li>• <strong>הכנה:</strong> מערבבים את החומוס המעוך עם שאר המצרכים והתיבול עד לקבלת מרקם אחיד ומטריף.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 5: Goat Cheese Salad with Strawberries & Pecans -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט גבינת עיזים, תותים ופקאן</h4>
-                        <p class="text-xs text-slate-600">סלט גורמה עשיר המשלב ירוקים, פירות יער מותרים וגבינה איכותית.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עלי בייבי ותרד טריים, תותים פרוסים (מנה מומלצת), גבינת עיזים פירורים, ואגוזי פקאן טבעיים.</li>
-                            <li>• <strong>הכנה:</strong> מסדרים את עלי הבייבי, מוסיפים את התותים, גבינת העיזים והפקאנים, ומתבלים במעט שמן זית וחומץ בלסמי איכותי ללא סוכר.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 6: Italian Salad -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט איטלקי מרענן</h4>
-                        <p class="text-xs text-slate-600">סלט צבעוני ועמוס בירקות טריים וזיתים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עגבניות שרי, מלפפון, זיתי קלמטה, בצל סגול, עלי אורגנו טריים ושמן זית כתית מעולה.</li>
-                            <li>• <strong>הכנה:</strong> קוצצים את הירקות גס, מוסיפים את הזיתים והתיבול האיטלקי ומגישים מיד.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 7: Kale Caesar with Pickled Red Onions -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קייל קיסר ובצל סגול מוחמץ</h4>
-                        <p class="text-xs text-slate-600">עלים ירוקים עשירים בנוגדי חמצון עם טוויסט חמצמץ מושלם.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עלי קייל קצוצים ומעורסכים בשמן זית, בצל סגול מוחמץ במלח ומיץ לימון, שקדים פרוסים קלויים.</li>
-                            <li>• <strong>הכנה:</strong> מעסים את עלי הקייל היטב עם שמן זית לריכוך העלים, מוסיפים את הבצל המוחמץ והשקדים.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Salad 8: Gingery Kale Salad with Cashew Dressing -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">סלט קייל ורוטב קשיו-ג'ינג'ר</h4>
-                        <p class="text-xs text-slate-600">סלט אסייתי בריא המבוסס על שומנים מהצומח וג'ינג'ר מרענן.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>מצרכים:</strong> עלי קייל, גזר מגורר דק (במידה מתונה), רוטב טחון של אגוזי קשיו, ג'ינג'ר מגורר, מעט סויה תמרי ומיץ לימון.</li>
-                            <li>• <strong>הכנה:</strong> טובלים את הקייל ברוטב הקרמי העשיר ומגישים עם שומשום קלוי מעל.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 11. RECIPES - SOUPS -->
-        <section id="section-recipes-soups" class="space-y-6 tab-content hidden">
-            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-slate-100 space-y-8">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-bowl-food text-indigo-600"></i> מרקים מחממים ומזינים
-                    </h2>
-                    <p class="text-sm text-slate-500">מרקים עשירים בירקות שורש, ירוקים וקטניות לחימום השלם.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Soup 1: Carrot Soup -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק גזר קטיפתי (Carrot Soup)</h4>
-                        <p class="text-xs text-slate-600">מרק עשיר, מחמם ומלא בבטא-קרوتين.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מבשלים גזרים ובצל בסיר עם ציר מרק צלול ומעט ג'ינג'ר. טוחנים בבלנדר מוט לקרם חלק ומוסיפים טיפת שמן זית בהגשה.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 2: Quinoa Vegetable Soup -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק קינואה וירקות מזין</h4>
-                        <p class="text-xs text-slate-600">מרק עשיר בסיבים תזונתיים ופחמימה מורכבת איכותית.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מבשלים קינואה יחד עם קוביות קישואים, סלרי, בצל ועשבי תיבול מרעננים במרק צלול עד לריכוך מלא.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 3: Cold Cucumber Soup -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק מלפפונים קר ורענן (Cold Cucumber Soup)</h4>
-                        <p class="text-xs text-slate-600">מושלם לימים חמים, דל מאוד בקלוריות ופחמימות.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> טוחנים מלפפונים טריים עם יוגורט יווני טבעי, שום, נענע קצוצה, מיץ לימון ומעט מלח גס בבלנדר ומקררים היטב.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 4: Velvety Green Vegetable Soup -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק ירקות ירוקים קטיפתי</h4>
-                        <p class="text-xs text-slate-600">עמוס בכל טוב הירוקים הבריאים ביותר.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מאדים תרד, ברוקולי וקישואים בסיר עם שמן זית, מוסיפים מים וטוחנים למרק ירוק עשיר, חלק ומזין.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 5: Beanless Veggie Chili Soup -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק צ'ילי ירקות עשיר (Beanless Chili)</h4>
-                        <p class="text-xs text-slate-600">מרק מחמם ועמוק טעמים על בסיס עגבניות ותבלינים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מבשלים עגבניות מרוסקות ללא סוכר עם בצל, שום, פלפלים חריפים, כמון ופפריקה מעושנת עד לקבלת מרקם סמיך ומנחם.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 6: Irish Stew -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">נזיד ירקות שורש אירי (Irish Stew)</h4>
-                        <p class="text-xs text-slate-600">נזיד עשיר ומנחם מבוסס על ירקות שורש מותרים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מבשלים בבישול איטי קוביות סלרי, בצל, שום ועשבי תיבול בציר מרק עשיר עד לאיחוד טעמים מלא.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 7 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק ירקות ירוקים עשיר</h4>
-                        <p class="text-xs text-slate-600">מרק מזין ומחמם עמוס בסיבים ונוגדי חמצון.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מאדים בצל, סלרי, קישואים, ברוקולי ותרד בסיר עם שמן זית. מוסיפים מים רותחים, עשבי תיבול (פטרוזיליה ושמיר), מלח ופלפל, ומבשלים עד ריכוך.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 8 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק פטריות</h4>
-                        <p class="text-xs text-slate-600">מרק עשיר, קרמי ודל פחמימות.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> מטגנים בצל ושום פרוסים יחד עם מגוון פטריות טריות (שמפיניון, פורטובלו, יער). מוסיפים מים ומעט קרם קוקוס טבעי או שמנת עזים, מתבלים ומבשלים היטב.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Soup 9 -->
-                    <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-base border-b border-slate-200 pb-2">מרק אבוקדו קר או חם</h4>
-                        <p class="text-xs text-slate-600">מנה ייחודית, עשירה בשומנים בריאים.</p>
-                        <ul class="space-y-1 text-xs text-slate-700">
-                            <li>• <strong>הכנה:</strong> טוחנים אבוקדו בשל עם מיץ לימון טרי, שום, ציר מרק צלול או מים קרים/חמימים, מלח, מעט כמון ונענע קצוצה לקבלת מרקם קטיפתי.</li>
-                        </ul>
-                    </div>
+                <div id="shopping-list-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
         </section>
@@ -695,7 +516,6 @@
 
     <!-- JavaScript Application Logic -->
     <script>
-        // Database of foods based on all guides and uploaded PDFs
         const foodsDatabase = [
             { id: 1, name: "בשר בקר רזים (סינטה, פילה, כתף, שייטל, בשר טחון דל שומן)", category: "חלבונים", status: "recommended", desc: "ללא רוטבים מסוכרים או ציפויי פירורי לחם." },
             { id: 2, name: "עופות (חזה עוף, הודו, פרגיות)", category: "חלבונים", status: "recommended", desc: "מקור מצוין לחלבון איכותי ודל שומן." },
@@ -706,7 +526,7 @@
             { id: 7, name: "זרעים ואגוזים (זרעי צ'יה, פשתן, חמניות, דלעת, שומשום מלא, אגוזי מלך, שקדים)", category: "שומנים", status: "recommended", desc: "נשנוש מעולה עשיר במינרלים ושומן איכותי." },
             { id: 8, name: "ירקות ירוקים וטריים (תרד, ברוקולי, קישואים, מלפפון, כרוב, כרובית, צנונית, חסה, קייל, סלרי, באק צ'וי, עגבניות, פלפלים)", category: "ירקות", status: "recommended", desc: "ללא הגבלה, עשירים בסיבים תזונתיים." },
             { id: 9, name: "תחליפי פסטה ודגנים (אטריות קישואים זודלס, דלעת ערמונים, דלעת ספגטי, דלורית)", category: "פחמימות", status: "recommended", desc: "חלופות מצוינות דלות פחמימות ועשירות בסיבים." },
-            { id: 10, name: "אטריות קונג'אק / שיריטאקי / Slim Rice (אורז קונג'אק / Konjac)", category: "פחמימות", status: "recommended", desc: "0 סוכר ודל מאוד בפחמימות." },
+            { id: 10, name: "אטריות קונג'אק / שיריטאקי / Slim Rice (אורז קונג'אק)", category: "פחמימות", status: "recommended", desc: "0 סוכר ודל מאוד בפחמימות." },
             { id: 11, name: "פסטה ואטריות 100% עדשים אדומות/ירוקות, חומוס, אפונה ירוקה", category: "פחמימות", status: "recommended", desc: "פחמימות מורכבות עשירות בחלבון במידה מתונה." },
             { id: 12, name: "פחמימות מורכבות במידה (קינואה, כוסמת, שיבולת שועל מלאה, אורז מלא/אדום, בטטה, גריסים)", category: "פחמימות", status: "recommended", desc: "פחמימות מורכבות בעלות מדד גליקמי נמוך." },
             { id: 13, name: "רטבים ותבלינים (פסטו, חרדל, חזרת, רוטב סויה תמרי, מיסו, ציר מרק עם מעט מלח)", category: "ירקות", status: "recommended", desc: "לשדרוג טעמים ללא סוכר מוסף." },
@@ -721,10 +541,8 @@
             { id: 22, name: "ענבים, בננות, מנגו, אבטיח, תמרים ותאנים", category: "אסור", status: "forbidden", desc: "פירות עתירי סוכר להימנע מהם." }
         ];
 
-        // State for Daily Meal Planner
         let selectedPlannerItems = [];
 
-        // Tab Switching Logic
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-btn').forEach(el => {
@@ -732,7 +550,11 @@
                 el.classList.add('text-white', 'hover:bg-indigo-800');
             });
 
-            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+            const sectionEl = document.getElementById(`section-${tabId}`);
+            if (sectionEl) {
+                sectionEl.classList.remove('hidden');
+            }
+            
             const activeBtn = document.getElementById(`tab-${tabId}`);
             if (activeBtn) {
                 activeBtn.classList.remove('text-white', 'hover:bg-indigo-800');
@@ -742,9 +564,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Render Foods Guide Grid
         function renderFoodsGrid(itemsToRender) {
             const grid = document.getElementById('foods-grid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             if (itemsToRender.length === 0) {
@@ -772,10 +594,13 @@
             });
         }
 
-        // Filter Foods Guide
         function filterFoods() {
-            const query = document.getElementById('food-search').value.toLowerCase();
-            const category = document.getElementById('food-category-filter').value;
+            const queryInput = document.getElementById('food-search');
+            const categoryInput = document.getElementById('food-category-filter');
+            if (!queryInput || !categoryInput) return;
+
+            const query = queryInput.value.toLowerCase();
+            const category = categoryInput.value;
 
             const filtered = foodsDatabase.filter(food => {
                 const matchesQuery = food.name.toLowerCase().includes(query) || food.desc.toLowerCase().includes(query);
@@ -787,9 +612,9 @@
             renderFoodsGrid(filtered);
         }
 
-        // Render Planner Ingredients Selector
         function renderPlannerIngredients() {
             const container = document.getElementById('planner-ingredients-list');
+            if (!container) return;
             container.innerHTML = '';
 
             const recommended = foodsDatabase.filter(f => f.status === 'recommended');
@@ -810,25 +635,21 @@
             });
         }
 
-        // Add Item to Daily Planner
         function addPlannerItem(name, category) {
             selectedPlannerItems.push({ name, category });
             updatePlannerUI();
         }
 
-        // Remove Item from Daily Planner
         function removePlannerItem(index) {
             selectedPlannerItems.splice(index, 1);
             updatePlannerUI();
         }
 
-        // Clear Planner
         function clearPlanner() {
             selectedPlannerItems = [];
             updatePlannerUI();
         }
 
-        // Generate Sample Menu
         function generateSampleMenu() {
             selectedPlannerItems = [
                 { name: "ביצים (חביתה בשמן זית)", category: "חלבונים" },
@@ -842,16 +663,16 @@
             updatePlannerUI();
         }
 
-        // Update Planner UI & Summary
         function updatePlannerUI() {
             const list = document.getElementById('selected-items-list');
             const countBadge = document.getElementById('selected-count');
+            if (!list || !countBadge) return;
             
             countBadge.innerText = `${selectedPlannerItems.length} פריטים`;
             list.innerHTML = '';
 
             if (selectedPlannerItems.length === 0) {
-                list.innerHTML = `<li class="text-indigo-300 text-center py-8 italic">עדיין לא נבחרו רכיבים. בחר מתוך רשימת המזונות משמאל.</li>`;
+                list.innerHTML = `<li class="text-indigo-300 text-center py-8 italic">עדיין לא נבחרו רכיבים.</li>`;
                 return;
             }
 
@@ -871,12 +692,17 @@
             });
         }
 
-        // Calculate Personal Metrics (BMI & TDEE)
         function calculateMetrics() {
-            const weight = parseFloat(document.getElementById('calc-weight').value);
-            const heightCm = parseFloat(document.getElementById('calc-height').value);
-            const age = parseInt(document.getElementById('calc-age').value);
-            const activity = parseFloat(document.getElementById('calc-activity').value);
+            const weightEl = document.getElementById('calc-weight');
+            const heightEl = document.getElementById('calc-height');
+            const ageEl = document.getElementById('calc-age');
+            const activityEl = document.getElementById('calc-activity');
+            if (!weightEl || !heightEl || !ageEl || !activityEl) return;
+
+            const weight = parseFloat(weightEl.value);
+            const heightCm = parseFloat(heightEl.value);
+            const age = parseInt(ageEl.value);
+            const activity = parseFloat(activityEl.value);
 
             if (!weight || !heightCm || !age) return;
 
@@ -899,31 +725,24 @@
                 statusColor = "bg-rose-500/80";
             }
 
-            // BMR using Mifflin-St Jeor equation for men
             const bmr = (10 * weight) + (6.25 * heightCm) - (5 * age) + 5;
             const tdee = Math.round(bmr * activity);
 
-            document.getElementById('result-bmi').innerText = bmi.toFixed(1);
+            const bmiEl = document.getElementById('result-bmi');
             const statusBadge = document.getElementById('result-bmi-status');
-            statusBadge.innerText = bmiStatus;
-            statusBadge.className = `text-xs px-2 py-0.5 rounded text-white font-bold ${statusColor}`;
+            const tdeeEl = document.getElementById('result-tdee');
 
-            document.getElementById('result-tdee').innerText = tdee.toLocaleString();
+            if (bmiEl) bmiEl.innerText = bmi.toFixed(1);
+            if (statusBadge) {
+                statusBadge.innerText = bmiStatus;
+                statusBadge.className = `text-xs px-2 py-0.5 rounded text-white font-bold ${statusColor}`;
+            }
+            if (tdeeEl) tdeeEl.innerText = tdee.toLocaleString();
         }
 
-        // Initialize application on window load
-        window.onload = function() {
-            renderFoodsGrid(foodsDatabase);
-            renderPlannerIngredients();
-            calculateMetrics();
-            renderShoppingList();
-            // Default to guide tab since home button was removed
-            switchTab('guide');
-        };
-
-        // Render Consolidated Shopping List
         function renderShoppingList() {
             const container = document.getElementById('shopping-list-container');
+            if (!container) return;
             container.innerHTML = '';
 
             const categories = {};
@@ -958,7 +777,6 @@
             }
         }
 
-        // Copy Shopping List to Clipboard
         function copyShoppingList() {
             let text = "רשימת קניות - תזונה ללא סוכר ופחמימות פשוטות:\n\n";
             foodsDatabase.filter(f => f.status === 'recommended').forEach(f => {
@@ -978,41 +796,33 @@
             document.body.removeChild(textarea);
         }
 
-        // Open in Google Keep
         function openInKeep() {
             let text = "רשימת קניות - תזונה ללא סוכר ופחמימות פשוטות:\n\n";
             foodsDatabase.filter(f => f.status === 'recommended').forEach(f => {
                 text += `• ${f.name} (${f.category})\n`;
             });
 
-            // Fallback copy mechanism using a temporary textarea
             const textarea = document.createElement('textarea');
             textarea.value = text;
-            textarea.style.position = 'fixed';  // Avoid scrolling to bottom
+            textarea.style.position = 'fixed';
             document.body.appendChild(textarea);
             textarea.focus();
             textarea.select();
             
             try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    alertBox("הרשימה הועתקה ללוח בהצלחה! פותח את Google Keep...");
-                } else {
-                    alertBox("מעביר ל-Google Keep...");
-                }
+                document.execCommand('copy');
+                alertBox("הרשימה הועתקה ללוח בהצלחה! פותח את Google Keep...");
             } catch (err) {
-                console.error('Fallback copy failed', err);
+                console.error('Copy failed', err);
             }
             
             document.body.removeChild(textarea);
 
-            // Open Google Keep in a new tab immediately
             setTimeout(() => {
                 window.open('https://keep.google.com/', '_blank');
             }, 600);
         }
 
-        // Custom notification box (no alert())
         function alertBox(msg) {
             const div = document.createElement('div');
             div.className = 'fixed bottom-5 left-5 bg-indigo-900 text-white px-5 py-3 rounded-xl shadow-xl z-50 text-sm font-semibold transition-all';
@@ -1022,6 +832,14 @@
                 div.remove();
             }, 3000);
         }
+
+        window.onload = function() {
+            renderFoodsGrid(foodsDatabase);
+            renderPlannerIngredients();
+            calculateMetrics();
+            renderShoppingList();
+            switchTab('guide');
+        };
     </script>
 </body>
 </html>
